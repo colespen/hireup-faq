@@ -31,8 +31,8 @@ const Faqs = ({ searchTerm }: { searchTerm: string }) => {
   }, [searchTerm]);
 
   return (
-    <div className="items-start w-3/4 max-w-[50rem]">
-      <div className="flex justify-end mb-6">
+    <div className="items-start max-w-[50rem]">
+      <div className="flex justify-end mb-4 md:mb-6">
         <button
           onClick={toggleAll}
           className="cursor-pointer group rounded-lg border border-transparent px-3 py-2 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
@@ -47,7 +47,7 @@ const Faqs = ({ searchTerm }: { searchTerm: string }) => {
             <div
               onClick={() => toggleAccordion(index)}
               key={index}
-              className="cursor-pointer mb-6 group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="cursor-pointer mb-4 md:mb-6 group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
             >
               <h2 className="flex justify-between items-center text-xl font-semibold mb-2 text-gray-100">
                 {faq.question}
@@ -106,13 +106,13 @@ export default function FaqPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-start py-24 px-8 gap-6">
+    <div className="flex min-h-screen flex-col items-end md:items-center justify-start px-4 py-5 md:py-24 md:gap-6">
       <input
         type="text"
         placeholder="Search FAQs..."
         value={searchTerm}
         onChange={handleSearchChange}
-        className="mb-6 w-full placeholder-gray-100 max-w-md p-2 border border-gray-500 bg-gray-900 rounded text-gray-100"
+        className="mb-6 w-10/12 md:w-full placeholder-gray-100 max-w-md p-2 border border-gray-500 bg-gray-900 rounded text-gray-100"
       />
       <Faqs searchTerm={searchTerm} />
     </div>
