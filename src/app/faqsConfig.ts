@@ -39,4 +39,9 @@ export const faqsConfig = [
     answer:
       "When using redirect() you may notice that the status codes used are 307 for a temporary redirect, and 308 for a permanent redirect. While traditionally a 302 was used for a temporary redirect, and a 301 for a permanent redirect, many browsers changed the request method of the redirect, from a POST to GET request when using a 302, regardless of the origins request method.",
   },
+  {
+    question: "Can I test async server components?",
+    answer:
+      "Since async Server Components are new to the React ecosystem, some tools do not fully support them. In the meantime, we recommend using End-to-End Testing over Unit Testing for async components.",
+  },
 ];

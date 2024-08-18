@@ -6,6 +6,15 @@ import { faqsConfig } from "../faqsConfig";
 
 const Faqs = ({ searchTerm }: { searchTerm: string }) => {
   const [openIndexes, setOpenIndexes] = React.useState<number[]>([]);
+  const [allOpen, setAllOpen] = React.useState(false);
+
+  const toggleAll = () => {
+    if (openIndexes.length === faqsConfig.length) {
+      setOpenIndexes([]);
+    } else {
+      setOpenIndexes(faqsConfig.map((_, index) => index));
+    }
+  };
 
   const toggleAccordion = (index: number) => {
     setOpenIndexes((prevIndexes) =>
@@ -23,6 +32,14 @@ const Faqs = ({ searchTerm }: { searchTerm: string }) => {
 
   return (
     <div className="items-start w-3/4 max-w-[50rem]">
+      <div className="flex justify-end mb-6">
+        <button
+          onClick={toggleAll}
+          className="cursor-pointer group rounded-lg border border-transparent px-3 py-2 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+        >
+          {openIndexes.length === faqsConfig.length ? "Close" : "Open"} all
+        </button>
+      </div>
       {filteredFaqs.length > 0 ? (
         filteredFaqs.map((faq, index) => {
           const isOpen = openIndexes.includes(index);
@@ -30,13 +47,15 @@ const Faqs = ({ searchTerm }: { searchTerm: string }) => {
             <div
               onClick={() => toggleAccordion(index)}
               key={index}
-              className="cursor-pointer mb-8 group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="cursor-pointer mb-6 group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
             >
               <h2 className="flex justify-between items-center text-xl font-semibold mb-2 text-gray-100">
                 {faq.question}
                 <span
                   className={`transform transition-transform duration-300 motion-reduce:transform-none ${
-                    isOpen ? "rotate-180" : "group-hover:translate-y-1 rotate-0"
+                    isOpen
+                      ? "group-hover:-translate-y-0.5 rotate-180"
+                      : "group-hover:translate-y-0.5 rotate-0"
                   }`}
                 >
                   ↓
@@ -87,7 +106,7 @@ export default function FaqPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start pt-24 px-8 gap-20">
+    <div className="flex min-h-screen flex-col items-center justify-start py-24 px-8 gap-6">
       <input
         type="text"
         placeholder="Search FAQs..."
@@ -96,6 +115,6 @@ export default function FaqPage() {
         className="mb-6 w-full placeholder-gray-100 max-w-md p-2 border border-gray-500 bg-gray-900 rounded text-gray-100"
       />
       <Faqs searchTerm={searchTerm} />
-    </main>
+    </div>
   );
 }
