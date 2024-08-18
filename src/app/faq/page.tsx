@@ -6,7 +6,6 @@ import { faqsConfig } from "../faqsConfig";
 
 const Faqs = ({ searchTerm }: { searchTerm: string }) => {
   const [openIndexes, setOpenIndexes] = React.useState<number[]>([]);
-  const [allOpen, setAllOpen] = React.useState(false);
 
   const toggleAll = () => {
     if (openIndexes.length === faqsConfig.length) {
